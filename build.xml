@@ -19,10 +19,15 @@
              uri="javafx:com.sun.javafx.tools.ant"
              classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
     <javac srcdir="." destdir="./bin" includes="**/*.java" classpathref="build.classpath" includeantruntime="false"/>
+        <copy todir="./bin">
+	  <fileset dir="fxml">
+	    <include name="**/*.fxml" />
+	  </fileset>
+	</copy>
   </target>
 
   <!-- BATCH -->
-  <target name="batch" depends="build">
+  <target name="batch">
     <path id="runtime.classpath">
       <fileset dir="/opt/java/jre/lib">
 	<include name="**/*.jar" />
@@ -33,7 +38,7 @@
              uri="javafx:com.sun.javafx.tools.ant"
              classpath="${JAVA_HOME}/lib/ant-javafx.jar"/-->
     
-    <java classname="org.nt67.sample.FxSample">
+    <java classname="org.nt67.sample.FxSampleApplication" fork="true" dir="bin">
       <classpath>
 	<path refid="runtime.classpath"/>
       </classpath>
