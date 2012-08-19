@@ -1,6 +1,44 @@
 <project name="fxsample" default="build" basedir = ".">
   <property name="fxlib" value="${JAVA_HOME}/jre/lib/" />
-  <target name="build">
-    <javac srcdir="." destdir="./bin" includes=".*/.*
+  
+  <!-- CLEAN -->
+  <target name="clean">
+    <delete dir="./bin" />
+    <mkdir dir="./bin" />
   </target>
+
+  <!-- BUILD -->
+  <target name="build" depends="clean">
+    <path id="build.classpath">
+      <fileset dir="/opt/java/jre/lib">
+	<include name="**/*.jar" />
+      </fileset>
+      <pathelement location="bin" />
+    </path>
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+             uri="javafx:com.sun.javafx.tools.ant"
+             classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+    <javac srcdir="." destdir="./bin" includes="**/*.java" classpathref="build.classpath"/>
+  </target>
+
+  <!-- BATCH -->
+  <target name="batch" depends="build">
+    <path id="runtime.classpath">
+      <fileset dir="/opt/java/jre/lib">
+	<include name="**/*.jar" />
+      </fileset>
+      <pathelement location="bin" />
+    </path>
+    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+             uri="javafx:com.sun.javafx.tools.ant"
+             classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+    
+    <java classname="org.nt67.sample.FxSample">
+      <classpath>
+	<path refid="runtime.classpath"/>
+      </classpath>
+    </java>
+  </target>
+
+
 </project>
