@@ -1,0 +1,6 @@
+<project name="fxsample" default="build" basedir = ".">
+  <property name="fxlib" value="${JAVA_HOME}/jre/lib/" />
+  <target name="build">
+    <javac srcdir="." destdir="./bin" includes=".*/.*
+  </target>
+</project>
