@@ -18,7 +18,7 @@
     <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
              uri="javafx:com.sun.javafx.tools.ant"
              classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
-    <javac srcdir="." destdir="./bin" includes="**/*.java" classpathref="build.classpath"/>
+    <javac srcdir="." destdir="./bin" includes="**/*.java" classpathref="build.classpath" includeantruntime="false"/>
   </target>
 
   <!-- BATCH -->
@@ -29,9 +29,9 @@
       </fileset>
       <pathelement location="bin" />
     </path>
-    <taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
+    <!--taskdef resource="com/sun/javafx/tools/ant/antlib.xml"
              uri="javafx:com.sun.javafx.tools.ant"
-             classpath="${JAVA_HOME}/lib/ant-javafx.jar"/>
+             classpath="${JAVA_HOME}/lib/ant-javafx.jar"/-->
     
     <java classname="org.nt67.sample.FxSample">
       <classpath>
